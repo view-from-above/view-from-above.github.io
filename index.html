@@ -1,28 +1,579 @@
-<!doctype html>
-<meta charset="utf-8">
-<head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<!DOCTYPE html>
+<html>
 
-  <!-- SEO -->
-  <meta property="og:title" content="" />
-  <meta property="og:type" content="article" />
-  <meta property="og:description" content="" />
-  <meta property="og:image" content="" />
-  <meta property="og:url" content="" />
-  <!-- Twitter Card data -->
-  <meta name="twitter:card" content="" />
-  <meta name="twitter:title" content="" />
-  <meta name="twitter:description" content="" />
-  <meta property="og:site_name" content="" />
-  <meta name="twitter:image" content="" />
+  <head>
+    <meta charset="utf-8" />
+    <meta property="og:title"
+      content="View From Above: A Framework for Evaluating Distribution Shifts in Model Behavior" />
+    <meta property="og:description"
+      content="A framework for detecting distribution shifts in agent behavior, tested on blackjack as an initial environment." />
+    <meta property="og:url" content="https://arxiv.org/abs/2407.00948" />
+    <meta name="description"
+      content="A framework for detecting distribution shifts in agent behavior, tested on blackjack as an initial environment." />
+    <meta name="keywords"
+      content="Model Evaluation, Knowledge Representation, Robustness & Alignment" />
+    <meta name="viewport" content="width=628, initial-scale=0.5" />
+    <title> View From Above: A Framework for Evaluating Distribution Shifts in
+      Model Behavior </title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+      rel="stylesheet">
+    <link rel="stylesheet" href="./static/css/bulma.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+    <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+    <link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <link rel="stylesheet" href="./static/css/index.css">
+    <link rel="stylesheet" href="https://use.typekit.net/iag3ven.css">
+    <link rel="stylesheet" href="./static/css/prism.css">
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/prism.min.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/prismjs-bibtex@2.0.1/prism-bibtex.min.js"></script>
+    <script
+      src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <script src="https://d3js.org/topojson.v1.min.js"></script>
+    <script defer src="./static/js/fontawesome.all.min.js"></script>
+    <script src="./static/js/bulma-carousel.min.js"></script>
+    <script src="./static/js/bulma-slider.min.js"></script>
+    <link rel="icon" type="image/png" sizes="32x32"
+      href="./static/figures/platinum_chip.png">
+    <link rel="icon" type="image/png" sizes="16x16"
+      href="./static/figures/platinum_chip.png">
+    <link rel="apple-touch-icon" sizes="76x76"
+      href="./static/figures/platinum_chip.png">
+    <link rel="manifest" href="./static/figures/platinum_chip.png">
+    <meta name="theme-color" content="#ffffff" />
+  </head>
 
-</head>
-<link rel="stylesheet" href="style.css">
-<body>
-  <section class="header">
-    <div id="title">
-      <h1>View From Above: A Framework for Evaluating Distribution Shifts in Model Behavior</h1>
-    </div>
-  </section>
-</body>
+  <body>
+    <section class="hero">
+      <div class="hero-body">
+        <div class="container is-max-desktop">
+          <div class="columns is-centered">
+            <div class="column has-text-centered">
+              <p style="padding: 20px" />
+              <h1 class="title is-1 publication-title">
+                <span id="main-title">
+                  <div id="worldmap" style="display: inline-block">
+                    <img src="./static/figures/platinum_chip.png"
+                      alt="Poker Chip" />
+                  </div> View From Above: <div id="worldmap"
+                    style="display: inline-block">
+                    <img src="./static/figures/platinum_chip.png"
+                      alt="Poker Chip" />
+                  </div>
+                  <p style="margin-top: -0.5rem" />
+                </span>
+                <span id="sub-title"> A Framework for Evaluating Distribution
+                  Shifts in Model Behavior </span>
+              </h1>
+              <div class="is-size-5 publication-authors">
+                <span class="author-block">
+                  <a href="https://tanush.xyz/" target="_blank">Tanush
+                    Chopra</a><sup>*12</sup>, </span>
+                <span class="author-block">
+                  <a href="https://ml5885.github.io" target="_blank">Michael
+                    Li</a><sup>*23</sup>, </span>
+                <span class="author-block">
+                  <a href="https://jacob-haimes.github.io/"
+                    target="_blank">Jacob Haimes</a><sup>2</sup>
+                </span>
+              </div>
+              <div class="is-size-5 publication-authors">
+                <span class="author-block"><sup>1</sup>Georgia Institute of
+                  Technology,</span>
+                <span class="author-block"><sup>2</sup>Apart Research,</span>
+                <span class="author-block"><sup>3</sup>Carnegie Mellon
+                  University</span>
+                <p style="margin-top: -0.25rem" />
+                <span class="author-block"
+                  style="font-size: 0.7em; font-style: italic"><sup>*</sup>Equal
+                  contribution</span>
+              </div>
+              <p style="padding: 12.5px" />
+              <div class="buttons has-addons is-centered">
+                <button
+                  class="external-link button is-medium is-ghost publication-links">
+                  <a href="https://arxiv.org/abs/2407.00948" target="_blank"
+                    style="text-decoration: none">
+                    <span class="icon is-small">
+                      <i class="ai ai-arxiv"></i>
+                    </span>
+                    <span>arXiv</span>
+                  </a>
+                </button>
+                <button
+                  class="external-link button is-medium is-ghost publication-links">
+                  <a
+                    href="https://github.com/Bluefin-Tuna/ApartResearch/tree/main/deception"
+                    target="_blank">
+                    <span class="icon is-small">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>code</span>
+                  </a>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-three-quarters">
+            <h2 class="title is-3">Abstract</h2>
+            <div class="content has-text-justified">
+              <p> When large language models (LLMs) are asked to perform certain
+                tasks, how can we be sure that their
+                <i>learned representations</i> align with reality? We propose a
+                domain-agnostic framework for systematically
+                evaluating <i>distribution shifts</i> in LLMs decision-making
+                processes, where they are given control of
+                mechanisms governed by pre-defined rules. While individual LLM
+                actions may appear consistent with expected
+                behavior, across a large number of trials, statistically
+                significant distribution shifts can emerge. To
+                test this, we construct a well-defined environment with known
+                outcome logic: blackjack. In more than 1,000
+                trials, we uncover statistically significant evidence suggesting
+                behavioral misalignment in the learned
+                representations of LLM. </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-three-quarters">
+            <h2 class="title is-3">Introduction</h2>
+            <div class="content has-text-justified">
+              <p> The field of machine learning has witnessed significant
+                advancements in developing "agentic" systems
+                that directly influence real-world outcomes. LLMs have emerged
+                as powerful tools in this domain,
+                attracting considerable attention for their application to a
+                wide range of tasks. </p>
+              <p> As LLMs are increasingly deployed in real-world systems, there
+                is growing concern about the potential
+                for biased outcomes from these AI agents. While research has
+                largely focused on human biases in LLMs, we
+                suggest the need to explore other dimensions of LLM behavior.
+                Our work addresses this gap by detecting
+                distribution shifts in LLM decision-making processes through
+                controlled environments like blackjack. </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-three-quarters">
+            <h2 class="title is-3">Related Works</h2>
+            <div class="content has-text-justified">
+              <p> Existing research on LLM biases has primarily focused on
+                whether models exhibit the same types of biases
+                found in humans, such as gender or racial biases. Studies have
+                shown that LLMs do mirror well-known human
+                biases; however, LLMs can also develop biases that diverge from
+                human behavior. </p>
+              <p> Our approach expands on previous work by using statistical
+                methods to directly evaluate LLM behavior and
+                detect distribution shifts. The framework we propose aims to
+                offer more robust insights into model
+                behavior misalignments in comparison to baseline human behavior
+                or theoretical expectations. </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-three-quarters">
+            <h2 class="title is-3">Methods</h2>
+            <div class="content has-text-justified">
+              <img src="./static/figures/Framework_Diagram.png"
+                alt="The VFA (View From Above) Framework for evaluating distribution shifts in LLM decision-making."
+                draggable="false" />
+              <p> To test our hypothesis, we implemented a simplified version of
+                blackjack and conducted a series of
+                experiments comparing a control group with random card draws to
+                an experimental group where card draws
+                were controlled by a large language model (LLM). </p>
+              <p> Our experiments used both zero-shot and few-shot prompting
+                strategies, and we evaluated models at
+                different temperature settings. The statistical tests employed
+                in our analysis include KL Divergence,
+                Chi-Squared, and Anderson-Darling, all of which help quantify
+                deviations in model behavior. </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-three-quarters">
+            <h2 class="title is-3">Results and Analysis</h2>
+            <div class="content has-text-justified">
+              <p>
+                Our statistical analysis reveals significant distribution shifts
+                in both card frequencies and final
+                hand values between the LLM-controlled experiments and the
+                theoretical baseline. The tables below
+                summarize these findings across different models and prompting
+                strategies.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container is-max-widescreen">
+        <div class="table-container is-max-widescreen is-centered">
+          <table style="width:100% !important; table-layout: auto;">
+            <caption
+              style="text-align: center; font-weight: bold; margin-bottom: 10px;">
+              Table 1: Statistical Test Results for Player and Dealer Card
+              Frequencies
+            </caption>
+            <thead>
+              <tr>
+                <th style="text-align: center;">Model</th>
+                <th style="text-align: center;">Shots</th>
+                <th style="text-align: center;">Dealer<br />KL Divergence</th>
+                <th style="text-align: center;">Player<br />KL Divergence</th>
+                <th style="text-align: center;">Dealer<br />Chi-Squared</th>
+                <th style="text-align: center;">Player<br />Chi-Squared</th>
+                <th
+                  style="text-align: center;">Dealer<br />Anderson-Darling</th>
+                <th
+                  style="text-align: center;">Player<br />Anderson-Darling</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td colspan="8"
+                  style="border-bottom: 2px solid #ddd;"></td></tr>
+              <tr>
+                <td style="text-align: center;">GPT-4</td>
+                <td style="text-align: center;">Zero</td>
+                <td style="text-align: center;">0.599</td>
+                <td style="text-align: center;">0.902</td>
+                <td style="text-align: center;">1,720***</td>
+                <td style="text-align: center;">1,920***</td>
+                <td style="text-align: center;">2.719*</td>
+                <td style="text-align: center;">3.369**</td>
+              </tr>
+              <tr>
+                <td style="text-align: center;">GPT-4</td>
+                <td style="text-align: center;">Few</td>
+                <td style="text-align: center;">0.851</td>
+                <td style="text-align: center;">1.000</td>
+                <td style="text-align: center;">1,648***</td>
+                <td style="text-align: center;">2,105***</td>
+                <td style="text-align: center;">3.365**</td>
+                <td style="text-align: center;">3.153**</td>
+              </tr>
+              <tr>
+                <td style="text-align: center;">Claude 3.5</td>
+                <td style="text-align: center;">Zero</td>
+                <td style="text-align: center;">3.128</td>
+                <td style="text-align: center;">3.287</td>
+                <td style="text-align: center;">5,548***</td>
+                <td style="text-align: center;">4,337***</td>
+                <td style="text-align: center;">4.566**</td>
+                <td style="text-align: center;">4.591**</td>
+              </tr>
+              <tr>
+                <td style="text-align: center;">Claude 3.5</td>
+                <td style="text-align: center;">Few</td>
+                <td style="text-align: center;">7.735</td>
+                <td style="text-align: center;">5.330</td>
+                <td style="text-align: center;">11,394***</td>
+                <td style="text-align: center;">5,872***</td>
+                <td style="text-align: center;">7.933***</td>
+                <td style="text-align: center;">6.158**</td>
+              </tr>
+              <tr>
+                <td style="text-align: center;">Llama 3</td>
+                <td style="text-align: center;">Zero</td>
+                <td style="text-align: center;">7.019</td>
+                <td style="text-align: center;">7.157</td>
+                <td style="text-align: center;">4,186***</td>
+                <td style="text-align: center;">4,390***</td>
+                <td style="text-align: center;">3.906**</td>
+                <td style="text-align: center;">5.157**</td>
+              </tr>
+              <tr>
+                <td style="text-align: center;">Llama 3</td>
+                <td style="text-align: center;">Few</td>
+                <td style="text-align: center;">8.116</td>
+                <td style="text-align: center;">8.323</td>
+                <td style="text-align: center;">4,698***</td>
+                <td style="text-align: center;">4,622***</td>
+                <td style="text-align: center;">5.503*</td>
+                <td style="text-align: center;">5.513*</td>
+              </tr>
+              <tr><td colspan="8"
+                  style="border-bottom: 2px solid #ddd;"></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container is-max-widescreen">
+        <div class="table-container is-max-widescreen is-centered">
+          <table style="width:100% !important; table-layout: auto;">
+            <caption
+              style="text-align: center; font-weight: bold; margin-bottom: 10px;">
+              Table 2: Statistical Test Results for Player and Dealer Final Hand
+              Values
+            </caption>
+            <thead>
+              <tr>
+                <th style="text-align: center;">Model</th>
+                <th style="text-align: center;">Shots</th>
+                <th style="text-align: center;">Dealer<br />KL Divergence</th>
+                <th style="text-align: center;">Player<br />KL Divergence</th>
+                <th style="text-align: center;">Dealer<br />Chi-Squared</th>
+                <th style="text-align: center;">Player<br />Chi-Squared</th>
+                <th
+                  style="text-align: center;">Dealer<br />Anderson-Darling</th>
+                <th
+                  style="text-align: center;">Player<br />Anderson-Darling</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td colspan="8"
+                  style="border-bottom: 2px solid #ddd;"></td></tr>
+              <tr>
+                <td style="text-align: center;">GPT-4</td>
+                <td style="text-align: center;">Zero</td>
+                <td style="text-align: center;">0.253</td>
+                <td style="text-align: center;">0.512</td>
+                <td style="text-align: center;">345***</td>
+                <td style="text-align: center;">307***</td>
+                <td style="text-align: center;">-0.236</td>
+                <td style="text-align: center;">0.783</td>
+              </tr>
+              <tr>
+                <td style="text-align: center;">GPT-4</td>
+                <td style="text-align: center;">Few</td>
+                <td style="text-align: center;">0.062</td>
+                <td style="text-align: center;">0.165</td>
+                <td style="text-align: center;">141***</td>
+                <td style="text-align: center;">248***</td>
+                <td style="text-align: center;">-0.776</td>
+                <td style="text-align: center;">0.338</td>
+              </tr>
+              <tr>
+                <td style="text-align: center;">Claude 3.5</td>
+                <td style="text-align: center;">Zero</td>
+                <td style="text-align: center;">3.539</td>
+                <td style="text-align: center;">2.661</td>
+                <td style="text-align: center;">2,950***</td>
+                <td style="text-align: center;">2,695***</td>
+                <td style="text-align: center;">2.782*</td>
+                <td style="text-align: center;">3.939**</td>
+              </tr>
+              <tr>
+                <td style="text-align: center;">Claude 3.5</td>
+                <td style="text-align: center;">Few</td>
+                <td style="text-align: center;">7.246</td>
+                <td style="text-align: center;">4.147</td>
+                <td style="text-align: center;">5,284***</td>
+                <td style="text-align: center;">3,390***</td>
+                <td style="text-align: center;">12.826***</td>
+                <td style="text-align: center;">6.296**</td>
+              </tr>
+              <tr>
+                <td style="text-align: center;">Llama 3</td>
+                <td style="text-align: center;">Zero</td>
+                <td style="text-align: center;">1.316</td>
+                <td style="text-align: center;">1.318</td>
+                <td style="text-align: center;">6,967***</td>
+                <td style="text-align: center;">1,661***</td>
+                <td style="text-align: center;">2.337*</td>
+                <td style="text-align: center;">1.856</td>
+              </tr>
+              <tr>
+                <td style="text-align: center;">Llama 3</td>
+                <td style="text-align: center;">Few</td>
+                <td style="text-align: center;">0.876</td>
+                <td style="text-align: center;">1.940</td>
+                <td style="text-align: center;">1,042***</td>
+                <td style="text-align: center;">905***</td>
+                <td style="text-align: center;">1.979*</td>
+                <td style="text-align: center;">3.045*</td>
+              </tr>
+              <tr><td colspan="8"
+                  style="border-bottom: 2px solid #ddd;"></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+        <div class="container is-max-widescreen">
+          <figure style="max-width: 70%; margin: 0 auto;">
+            <img
+              src="./static/figures/Baseline_and_0.5_Temperature_card_frequency_grid.png"
+              alt="Card Draw Frequencies Grid" draggable="false"
+              style="width: 100%;" />
+            <figcaption
+              style="text-align: center; font-weight: bold; margin-top: 10px; margin-bottom: 50px">
+              Figure: Card draw frequencies across experiments.
+            </figcaption>
+          </figure>
+        </div>
+        <div class="container is-max-desktop">
+          <div class="columns is-centered has-text-centered">
+            <div class="column is-three-quarters">
+              <div class="content has-text-justified">
+                <p>
+                  As shown in the figure above, card draw frequencies vary
+                  considerably across models and prompting strategies.
+                  KL divergence values are notably non-zero across all models and
+                  prompting strategies, indicating significant
+                  shifts in card draw frequencies.
+                </p>
+                <p>
+                  This observation is further corroborated by the chi-squared
+                  test, which consistently yields
+                  p-values below 0.001 for all models and settings, confirming
+                  statistically significant distributional shifts.
+                  Anderson-Darling test results also show highly significant
+                  differences (p-values ≤ 0.01) between observed and expected
+                  card frequencies in nearly all cases.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-three-quarters">
+            <h3 class="title is-4">Final Hand Values</h3>
+            <div class="content has-text-justified">
+              <p>
+                The distribution of final hand values also exhibits significant
+                deviations from the baseline expectations.
+                KL divergence values for final hand values are non-zero across
+                all models and prompting strategies,
+                indicating distributional shifts. Chi-squared test results
+                consistently show p-values below 0.001,
+                further confirming these shifts.
+              </p>
+              <p>
+                Anderson-Darling test results show that Claude 3.5 and Llama 3
+                show statistically significant deviations (p-values ≤ 0.05)
+                in most cases, while GPT-4 yields non-significant results for
+                both zero-shot and few-shot prompting.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-three-quarters">
+            <h2 class="title is-3">Conclusion</h2>
+            <div class="content has-text-justified">
+              <p>
+                Our study uses blackjack as a proof-of-concept to test our
+                framework's ability to detect
+                deviations from theoretical baselines in LLM decision-making.
+                Significant deviations in
+                both card frequencies and final hand values were observed, with
+                KL divergence, Chi-Squared,
+                and Anderson-Darling test results supporting statistically
+                significant shifts from expected
+                distributions. These results are consistent with our hypothesis
+                that the framework can effectively
+                highlight anomalous LLM behavior, with p-values consistently
+                below 0.001 across various models.
+                <p>
+                </p>
+                We are currently working on collecting human baseline data for
+                more accurate comparisons and
+                expanding our experiments to diverse environments such as
+                financial decision-making and strategic simulations.
+                Additionally, performance differences between models like GPT-4,
+                Llama 3, and Claude 3.5 suggest that specific factors
+                tied to model training may influence decision-making, warranting
+                further investigation into how different training techniques
+                impact model alignment with expected outcomes.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="paper">
+      <div class="container is-mobile">
+        <div class="columns is-centered has-text-centered">
+          <div class="container content">
+            <h2 class="title is-3">BibTeX</h2>
+            <div id="bibtex" class="column has-text-justified is-centered">
+              <pre><code class="language-bibtex">@misc{chopra2024viewaboveframeworkevaluating,
+    title={View From Above: A Framework for Evaluating Distribution Shifts in Model Behavior}, 
+    author={Tanush Chopra and Michael Li and Jacob Haimes},
+    year={2024},
+    eprint={2407.00948},
+    archivePrefix={arXiv},
+    primaryClass={cs.CL},
+    url={https://arxiv.org/abs/2407.00948}, 
+}</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <footer class="footer">
+      <div class="container has-text-centered">
+        <p> Page source code adapted from <a
+            href="https://internet-explorer-ssl.github.io/"
+            target="_blank">here</a> and <a href="https://nerfies.github.io/"
+            target="_blank">here</a>.
+        </p>
+      </div>
+    </footer>
+    <script src="./static/js/index.js"></script>
+    <script src="./static/js/prism.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/prismjs-bibtex@2.0.1/prism-bibtex.js"
+      integrity="sha256-+dK6uqUp/DnP6ef97s8XcoynBnGe5vM5gvBECH0EB3U="
+      crossorigin="anonymous">
+    </script>
+  </body>
+
+</html>
